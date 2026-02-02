@@ -112,7 +112,7 @@ export default function LandingPage() {
               <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
                 <div>
                   <div className="flex flex-wrap items-center gap-2" data-testid="row-hero-badges">
-                    <BadgePill icon={<Sparkles className="size-3.5" aria-hidden="true" />}>Pre‑launch</BadgePill>
+                    <BadgePill icon={<Sparkles className="size-3.5" aria-hidden="true" />}>Coming soon</BadgePill>
                     <BadgePill icon={<Shield className="size-3.5" aria-hidden="true" />}>Designed for dignity</BadgePill>
                     <BadgePill icon={<HeartPulse className="size-3.5" aria-hidden="true" />}>Built for peace of mind</BadgePill>
                   </div>
@@ -209,7 +209,7 @@ export default function LandingPage() {
                           data-testid="badge-status"
                         >
                           <span className="size-1.5 rounded-full bg-emerald-500" />
-                          Pre‑launch
+                          Coming soon
                         </div>
                       </div>
 
@@ -254,7 +254,7 @@ export default function LandingPage() {
                   </div>
 
                   <div className="mt-4 text-xs text-muted-foreground" data-testid="text-disclaimer">
-                    Concept UI for pre‑launch communication.
+                    Concept UI for early communication.
                   </div>
                 </div>
               </div>
@@ -431,7 +431,7 @@ export default function LandingPage() {
             <Separator className="my-8" />
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="text-sm text-muted-foreground" data-testid="text-footer-left">
-                © {new Date().getFullYear()} rx360. Pre‑launch.
+                © {new Date().getFullYear()} rx360. Coming soon.
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <a
