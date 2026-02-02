@@ -55,10 +55,10 @@ export default function LandingPage() {
               </span>
               <div className="leading-tight">
                 <div className="rx-display text-base tracking-tight" data-testid="text-brand">
-                  rx360
+                  Rx360
                 </div>
                 <div className="text-xs text-muted-foreground" data-testid="text-tagline">
-                  Sleek care, always-on.
+                  Stay Connected. Stay Healthy.
                 </div>
               </div>
             </Link>
@@ -131,22 +131,22 @@ export default function LandingPage() {
                     className="rx-display mt-6 text-pretty text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
                     data-testid="text-hero-title"
                   >
-                    A jewelry‑like band that helps seniors stay safe, on schedule, and connected.
+                    Age the way you want to.
                   </motion.h1>
 
                   <p
                     className="mt-4 max-w-xl text-pretty text-base text-muted-foreground sm:text-lg"
                     data-testid="text-hero-subtitle"
                   >
-                    rx360 supports medication reminders, fall detection, and gentle family notifications—so independence
-                    feels confident, not risky.
+                    Rx360 is a complete wellness ecosystem that helps you stay on track with medications, get support in
+                    emergencies, and share updates with your doctor and support circle\u2014when you choose.
                   </p>
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                     <div className="flex w-full max-w-md items-center gap-2 rounded-2xl border border-border/70 bg-background/60 p-2 shadow-sm">
                       <Input
                         type="email"
-                        placeholder="Email for updates"
+                        placeholder="Email for launch updates"
                         className="h-11 border-0 bg-transparent shadow-none focus-visible:ring-0"
                         data-testid="input-email"
                       />
@@ -155,25 +155,25 @@ export default function LandingPage() {
                       </Button>
                     </div>
                     <div className="text-xs text-muted-foreground" data-testid="text-email-help">
-                      No spam. Just launch updates.
+                      No spam. Just the essentials.
                     </div>
                   </div>
 
                   <div className="mt-8 grid gap-3 sm:grid-cols-3">
                     {[
                       {
-                        title: "Medication",
-                        desc: "Friendly nudges that fit a routine.",
+                        title: "RxSchedule",
+                        desc: "Right Dose. Right Time.",
                         icon: <BellRing className="size-4" aria-hidden="true" />,
                       },
                       {
-                        title: "Falls",
-                        desc: "Detection + fast family alerts.",
+                        title: "Fall detection",
+                        desc: "A safety layer for peace of mind.",
                         icon: <Waves className="size-4" aria-hidden="true" />,
                       },
                       {
-                        title: "Care",
-                        desc: "A wearable that looks like jewelry.",
+                        title: "RxPulse band",
+                        desc: "Bold style. Discrete alerts.",
                         icon: <Watch className="size-4" aria-hidden="true" />,
                       },
                     ].map((f, idx) => (
@@ -208,7 +208,7 @@ export default function LandingPage() {
                             Concept preview
                           </div>
                           <div className="rx-display mt-1 text-xl" data-testid="text-prototype-title">
-                            rx360 band
+                            RxPulse band
                           </div>
                         </div>
                         <div
@@ -221,30 +221,32 @@ export default function LandingPage() {
                       </div>
 
                       <div className="mt-5 grid gap-3">
-                        {["Discreet reminders", "Fall detection", "Family notifications", "Comfort-first design"].map(
-                          (t, i) => (
-                            <div
-                              key={t}
-                              className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-3"
-                              data-testid={`row-capability-${i}`}
-                            >
-                              <div className="flex items-center gap-3">
-                                <span className="inline-flex size-9 items-center justify-center rounded-xl bg-foreground text-background">
-                                  {i % 2 === 0 ? (
-                                    <Stethoscope className="size-4" aria-hidden="true" />
-                                  ) : (
-                                    <Shield className="size-4" aria-hidden="true" />
-                                  )}
-                                </span>
-                                <span className="text-sm font-semibold" data-testid={`text-capability-${i}`}
-                                >
-                                  {t}
-                                </span>
-                              </div>
-                              <span className="text-xs text-muted-foreground">Soon</span>
+                        {[
+                          "RxSchedule reminders",
+                          "Fall detection + assistance",
+                          "Support circle notifications",
+                          "Pharmacy‑informed guidance",
+                        ].map((t, i) => (
+                          <div
+                            key={t}
+                            className="flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-4 py-3"
+                            data-testid={`row-capability-${i}`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <span className="inline-flex size-9 items-center justify-center rounded-xl bg-foreground text-background">
+                                {i % 2 === 0 ? (
+                                  <Stethoscope className="size-4" aria-hidden="true" />
+                                ) : (
+                                  <Shield className="size-4" aria-hidden="true" />
+                                )}
+                              </span>
+                              <span className="text-sm font-semibold" data-testid={`text-capability-${i}`}>
+                                {t}
+                              </span>
                             </div>
-                          ),
-                        )}
+                            <span className="text-xs text-muted-foreground">Soon</span>
+                          </div>
+                        ))}
                       </div>
 
                       <div className="mt-5 rounded-2xl border border-border/60 bg-background/50 p-4">
@@ -273,31 +275,32 @@ export default function LandingPage() {
             <div className="grid gap-10 md:grid-cols-2 md:items-start">
               <div>
                 <div className="rx-display text-3xl tracking-tight" data-testid="text-product-title">
-                  Made to look good. Built to do good.
+                  Stay Connected. Stay Healthy.
                 </div>
                 <p className="mt-3 max-w-prose text-muted-foreground" data-testid="text-product-copy">
-                  rx360 is designed like modern jewelry—sleek materials, soft edges, and a calm presence. Under the hood,
-                  it’s a safety layer: reminders, detection, and respectful notifications.
+                  Rx360 is a complete wellness ecosystem for living your life freely, while keeping the people you care
+                  about informed about your well-being. Assisted by a mobile phone interface, wearable wristband, and
+                  virtual chat, you can connect with your personal data, care circle, and overall health\u2014wherever you go.
                 </p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
                 {[
                   {
-                    title: "Subtle on the wrist",
-                    desc: "A band that blends into daily life.",
+                    title: "RxPassport",
+                    desc: "Portable Health. Yours to Share.",
                   },
                   {
-                    title: "Designed for seniors",
-                    desc: "Simple interactions. Clear feedback.",
+                    title: "RxSchedule",
+                    desc: "Right Dose. Right Time.",
                   },
                   {
-                    title: "Family‑ready",
-                    desc: "Signals that support without hovering.",
+                    title: "RxAssistant",
+                    desc: "Virtual assistance with pharmacist\u2011informed guidance.",
                   },
                   {
-                    title: "Mission‑driven",
-                    desc: "Independence with a safety net.",
+                    title: "RxPulse",
+                    desc: "Bold style. Discrete alerts.",
                   },
                 ].map((c, idx) => (
                   <Card
@@ -325,27 +328,27 @@ export default function LandingPage() {
               <div className="grid gap-8 md:grid-cols-[1fr_1fr] md:items-center">
                 <div>
                   <div className="rx-display text-3xl tracking-tight" data-testid="text-mission-title">
-                    A future where aging feels empowered.
+                    Age the way you want to.
                   </div>
                   <p className="mt-3 text-muted-foreground" data-testid="text-mission-copy">
-                    We believe seniors deserve technology that’s calming, beautiful, and supportive—without stigma.
-                    rx360 is built for everyday dignity.
+                    Rx360 is built for self-directed care\u2014easy to use, easy to share, and designed to keep your pharmacist,
+                    doctor, and support circle informed when you choose.
                   </p>
                 </div>
 
                 <div className="grid gap-3">
                   {[
                     {
-                      title: "Respect",
-                      desc: "Support without surveillance.",
+                      title: "Approachable",
+                      desc: "Easy setup and an uncomplicated experience.",
                     },
                     {
-                      title: "Clarity",
-                      desc: "Signals you can trust.",
+                      title: "Self-directed",
+                      desc: "You control what gets shared, and with whom.",
                     },
                     {
-                      title: "Craft",
-                      desc: "A wearable you actually want to wear.",
+                      title: "Credible",
+                      desc: "Pharmacy-connected guidance you can trust.",
                     },
                   ].map((v, idx) => (
                     <div
