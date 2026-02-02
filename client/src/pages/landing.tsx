@@ -79,13 +79,6 @@ export default function LandingPage() {
                 Mission
               </a>
               <a
-                href="#investors"
-                className="rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground"
-                data-testid="link-investors"
-              >
-                Investors
-              </a>
-              <a
                 href="#careers"
                 className="rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground"
                 data-testid="link-careers"
@@ -375,53 +368,6 @@ export default function LandingPage() {
           </Container>
         </section>
 
-        {/* Investors */}
-        <section id="investors" className="py-14 sm:py-18">
-          <Container>
-            <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:items-start">
-              <div>
-                <div className="rx-display text-3xl tracking-tight" data-testid="text-investors-title">
-                  Investors
-                </div>
-                <p className="mt-3 max-w-prose text-muted-foreground" data-testid="text-investors-copy">
-                  We’re building an elegant safety layer for the fastest‑growing population. If you invest in mission +
-                  strong design + measurable outcomes, we’d love to talk.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {["Pre‑launch", "Hardware + software", "Care network", "Human‑centered"].map((t, idx) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-border/70 bg-card/60 px-3 py-1 text-xs font-semibold text-muted-foreground"
-                      data-testid={`badge-investor-${idx}`}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <Card className="rx-card rounded-[28px] p-6 sm:p-7" data-testid="card-investor-contact">
-                <div className="text-sm font-semibold" data-testid="text-investor-form-title">
-                  Request a deck
-                </div>
-                <p className="mt-1 text-sm text-muted-foreground" data-testid="text-investor-form-subtitle">
-                  Share an email and we’ll follow up.
-                </p>
-                <div className="mt-4 grid gap-3">
-                  <Input placeholder="Name" className="h-11" data-testid="input-investor-name" />
-                  <Input placeholder="Email" type="email" className="h-11" data-testid="input-investor-email" />
-                  <Button className="h-11 rounded-xl" data-testid="button-investor-submit">
-                    Send request
-                    <ArrowRight className="ml-2 size-4" aria-hidden="true" />
-                  </Button>
-                  <div className="text-xs text-muted-foreground" data-testid="text-investor-note">
-                    We’ll never share your info.
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </Container>
-        </section>
 
         {/* Careers */}
         <section id="careers" className="py-14 sm:py-18">
