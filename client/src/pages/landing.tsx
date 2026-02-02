@@ -10,11 +10,14 @@ import {
   Watch,
   Waves,
 } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { useToast } from "@/hooks/use-toast";
 
 function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">{children}</div>;
@@ -33,6 +36,47 @@ function BadgePill({ children, icon }: { children: React.ReactNode; icon?: React
 }
 
 export default function LandingPage() {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
+  const waitlistMutation = useMutation({
+    mutationFn: async (email: string) => {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to join waitlist");
+      }
+
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "You're on the list!",
+        description: "We'll keep you updated on our launch.",
+      });
+      setEmail("");
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Something went wrong",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      waitlistMutation.mutate(email);
+    }
+  };
+
   return (
     <div className="min-h-dvh bg-background text-foreground">
       {/* Background */}
@@ -135,22 +179,30 @@ export default function LandingPage() {
                     emergencies, and share updates with your doctor and support circle—when you choose.
                   </p>
 
-                  <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                     <div className="flex w-full max-w-md items-center gap-2 rounded-2xl border border-border/70 bg-background/60 p-2 shadow-sm">
                       <Input
                         type="email"
                         placeholder="Email for launch updates"
                         className="h-11 border-0 bg-transparent shadow-none focus-visible:ring-0"
                         data-testid="input-email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
                       />
-                      <Button className="h-11 rounded-xl" data-testid="button-submit">
-                        Join
+                      <Button
+                        className="h-11 rounded-xl"
+                        data-testid="button-submit"
+                        type="submit"
+                        disabled={waitlistMutation.isPending}
+                      >
+                        {waitlistMutation.isPending ? "Joining..." : "Join"}
                       </Button>
                     </div>
                     <div className="text-xs text-muted-foreground" data-testid="text-email-help">
                       No spam. Just the essentials.
                     </div>
-                  </div>
+                  </form>
 
                   <div className="mt-8 grid gap-3 sm:grid-cols-3">
                     {[
