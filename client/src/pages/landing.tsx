@@ -132,13 +132,6 @@ export default function LandingPage() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <Button
-                variant="secondary"
-                className="hidden rounded-full md:inline-flex"
-                data-testid="button-request-demo"
-              >
-                Request early access
-              </Button>
               <Button className="rounded-full" data-testid="button-join-waitlist">
                 Join waitlist
                 <ArrowRight className="ml-2 size-4" aria-hidden="true" />
