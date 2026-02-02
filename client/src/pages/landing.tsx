@@ -139,7 +139,7 @@ export default function LandingPage() {
                     data-testid="text-hero-subtitle"
                   >
                     Rx360 is a complete wellness ecosystem that helps you stay on track with medications, get support in
-                    emergencies, and share updates with your doctor and support circle\u2014when you choose.
+                    emergencies, and share updates with your doctor and support circle—when you choose.
                   </p>
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -280,7 +280,7 @@ export default function LandingPage() {
                 <p className="mt-3 max-w-prose text-muted-foreground" data-testid="text-product-copy">
                   Rx360 is a complete wellness ecosystem for living your life freely, while keeping the people you care
                   about informed about your well-being. Assisted by a mobile phone interface, wearable wristband, and
-                  virtual chat, you can connect with your personal data, care circle, and overall health\u2014wherever you go.
+                  virtual chat, you can connect with your personal data, care circle, and overall health—wherever you go.
                 </p>
               </div>
 
@@ -296,7 +296,7 @@ export default function LandingPage() {
                   },
                   {
                     title: "RxAssistant",
-                    desc: "Virtual assistance with pharmacist\u2011informed guidance.",
+                    desc: "Virtual assistance with pharmacist-informed guidance.",
                   },
                   {
                     title: "RxPulse",
@@ -331,7 +331,7 @@ export default function LandingPage() {
                     Age the way you want to.
                   </div>
                   <p className="mt-3 text-muted-foreground" data-testid="text-mission-copy">
-                    Rx360 is built for self-directed care\u2014easy to use, easy to share, and designed to keep your pharmacist,
+                    Rx360 is built for self-directed care—easy to use, easy to share, and designed to keep your pharmacist,
                     doctor, and support circle informed when you choose.
                   </p>
                 </div>
