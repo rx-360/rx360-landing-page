@@ -153,7 +153,7 @@ export default function LandingPage() {
                     className="rx-display mt-6 text-pretty text-4xl leading-[1.05] tracking-tight sm:text-5xl md:text-6xl"
                     data-testid="text-hero-title"
                   >
-                    Age the way you want to.
+                    Stay Connected. Stay Healthy.
                   </motion.h1>
 
                   <p
