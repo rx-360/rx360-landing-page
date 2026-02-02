@@ -228,8 +228,8 @@ export default function LandingPage() {
 
                 <div className="md:justify-self-end">
                   <div className="rx-card rx-subtle-ring rx-noise relative overflow-hidden rounded-[28px] p-5">
-                    <div className="absolute -left-24 -top-24 size-64 rounded-full bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.35),transparent_60%)]" />
-                    <div className="absolute -bottom-24 -right-24 size-64 rounded-full bg-[radial-gradient(circle_at_center,hsl(var(--accent)/0.30),transparent_60%)]" />
+                    <div className="absolute -left-24 -top-24 size-64 rounded-full bg-[radial-gradient(circle_at_center,hsl(30_100%_55%/0.35),transparent_60%)]" />
+                    <div className="absolute -bottom-24 -right-24 size-64 rounded-full bg-[radial-gradient(circle_at_center,hsl(320_80%_60%/0.30),transparent_60%)]" />
 
                     <div className="relative">
                       <div className="flex items-start justify-between gap-3">
