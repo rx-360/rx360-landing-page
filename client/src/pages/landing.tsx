@@ -156,7 +156,6 @@ export default function LandingPage() {
               <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-center">
                 <div>
                   <div className="flex flex-wrap items-center gap-2" data-testid="row-hero-badges">
-                    <BadgePill icon={<Sparkles className="size-3.5" aria-hidden="true" />}>Coming soon</BadgePill>
                     <BadgePill icon={<Watch className="size-3.5" aria-hidden="true" />}>Elegant. Portable. Connected.</BadgePill>
                     <BadgePill icon={<HeartPulse className="size-3.5" aria-hidden="true" />}>Wear your way to wellness.</BadgePill>
                   </div>
