@@ -296,10 +296,10 @@ export default function LandingPage() {
 
                       <div className="mt-5 rounded-2xl border border-border/60 bg-background/50 p-4">
                         <div className="text-xs font-semibold text-muted-foreground" data-testid="text-privacy-label">
-                          Privacy-first
+                          Private by default
                         </div>
                         <div className="mt-1 text-sm text-foreground/90" data-testid="text-privacy-copy">
-                          Designed to share the right signal with the right people—without feeling intrusive.
+                          No one sees your health information unless you give them access.
                         </div>
                       </div>
                     </div>
