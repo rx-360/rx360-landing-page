@@ -289,10 +289,6 @@ export default function LandingPage() {
                       </div>
                     </div>
                   </div>
-
-                  <div className="mt-4 text-xs text-muted-foreground" data-testid="text-disclaimer">
-                    Concept UI for early communication.
-                  </div>
                 </div>
               </div>
             </div>
