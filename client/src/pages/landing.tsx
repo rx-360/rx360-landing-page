@@ -125,7 +125,7 @@ export default function LandingPage() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <Button className="rounded-full" data-testid="button-join-waitlist">
+              <Button className="rx-btn-gradient rounded-full" data-testid="button-join-waitlist">
                 Join waitlist
                 <ArrowRight className="ml-2 size-4" aria-hidden="true" />
               </Button>
@@ -176,7 +176,7 @@ export default function LandingPage() {
                         required
                       />
                       <Button
-                        className="h-11 rounded-xl"
+                        className="rx-btn-gradient h-11 rounded-xl"
                         data-testid="button-submit"
                         type="submit"
                         disabled={waitlistMutation.isPending}
