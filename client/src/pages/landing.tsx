@@ -18,6 +18,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
+import rx360Logo from "@/assets/rx360-logo.png";
 
 function Container({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">{children}</div>;
@@ -90,21 +91,13 @@ export default function LandingPage() {
       <header className="sticky top-0 z-20 border-b border-border/60 bg-background/70 backdrop-blur-xl">
         <Container>
           <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="group inline-flex items-center gap-2" data-testid="link-home">
-              <span
-                className="grid size-9 place-items-center rounded-xl bg-foreground text-background shadow-sm"
-                data-testid="logo-mark"
-              >
-                <span className="rx-display text-sm">rx</span>
-              </span>
-              <div className="leading-tight">
-                <div className="rx-display text-base tracking-tight" data-testid="text-brand">
-                  Rx360
-                </div>
-                <div className="text-xs text-muted-foreground" data-testid="text-tagline">
-                  Stay Connected. Stay Healthy.
-                </div>
-              </div>
+            <Link href="/" className="group inline-flex items-center" data-testid="link-home">
+              <img
+                src={rx360Logo}
+                alt="Rx360 - Stay Connected. Stay Healthy."
+                className="h-8 w-auto"
+                data-testid="logo-image"
+              />
             </Link>
 
             <nav className="hidden items-center gap-2 md:flex" aria-label="Primary">
