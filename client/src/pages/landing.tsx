@@ -233,13 +233,8 @@ export default function LandingPage() {
 
                     <div className="relative">
                       <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <div className="text-xs font-semibold text-muted-foreground" data-testid="text-prototype-label">
-                            Concept preview
-                          </div>
-                          <div className="rx-display mt-1 text-xl" data-testid="text-prototype-title">
-                            RxPulse band
-                          </div>
+                        <div className="rx-display text-xl" data-testid="text-prototype-title">
+                          RxPulse band
                         </div>
                         <div
                           className="inline-flex items-center gap-2 rounded-full bg-foreground/10 px-3 py-1 text-xs font-semibold"
