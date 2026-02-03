@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   BellRing,
+  Check,
   HeartPulse,
   Shield,
   Sparkles,
@@ -236,13 +237,6 @@ export default function LandingPage() {
                         <div className="rx-display text-xl" data-testid="text-prototype-title">
                           RxPulse band
                         </div>
-                        <div
-                          className="inline-flex items-center gap-2 rounded-full bg-foreground/10 px-3 py-1 text-xs font-semibold"
-                          data-testid="badge-status"
-                        >
-                          <span className="size-1.5 rounded-full bg-emerald-500" />
-                          Coming soon
-                        </div>
                       </div>
 
                       <div className="mt-5 grid gap-3">
@@ -269,7 +263,9 @@ export default function LandingPage() {
                                 {t}
                               </span>
                             </div>
-                            <span className="text-xs text-muted-foreground">Soon</span>
+                            <span className="inline-flex size-6 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-600">
+                              <Check className="size-3.5" aria-hidden="true" />
+                            </span>
                           </div>
                         ))}
                       </div>
