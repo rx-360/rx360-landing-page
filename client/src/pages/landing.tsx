@@ -16,6 +16,13 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
@@ -37,25 +44,29 @@ function BadgePill({ children, icon }: { children: React.ReactNode; icon?: React
   );
 }
 
+async function submitWaitlist(email: string) {
+  const response = await fetch("/api/waitlist", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || "Failed to join waitlist");
+  }
+
+  return response.json();
+}
+
 export default function LandingPage() {
   const [email, setEmail] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalEmail, setModalEmail] = useState("");
   const { toast } = useToast();
 
   const waitlistMutation = useMutation({
-    mutationFn: async (email: string) => {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error || "Failed to join waitlist");
-      }
-
-      return response.json();
-    },
+    mutationFn: submitWaitlist,
     onSuccess: () => {
       toast({
         title: "You're on the list!",
@@ -72,10 +83,36 @@ export default function LandingPage() {
     },
   });
 
+  const modalMutation = useMutation({
+    mutationFn: submitWaitlist,
+    onSuccess: () => {
+      setModalOpen(false);
+      setModalEmail("");
+      toast({
+        title: "You're on the list!",
+        description: "We'll keep you updated on our launch.",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Something went wrong",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
       waitlistMutation.mutate(email);
+    }
+  };
+
+  const handleModalSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (modalEmail) {
+      modalMutation.mutate(modalEmail);
     }
   };
 
@@ -122,7 +159,7 @@ export default function LandingPage() {
               <Button
                 className="rx-btn-gradient rounded-full"
                 data-testid="button-join-waitlist"
-                onClick={() => document.getElementById("waitlist-form")?.scrollIntoView({ behavior: "smooth", block: "center" })}
+                onClick={() => setModalOpen(true)}
               >
                 Join waitlist
                 <ArrowRight className="ml-2 size-4" aria-hidden="true" />
@@ -399,6 +436,40 @@ export default function LandingPage() {
           </Container>
         </footer>
       </main>
+
+      <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+        <DialogContent className="rounded-2xl sm:rounded-2xl">
+          <DialogHeader>
+            <DialogTitle className="rx-display text-2xl tracking-tight">
+              Join the Rx360 waitlist
+            </DialogTitle>
+            <DialogDescription>
+              Get notified when we launch. No spam — just the essentials.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleModalSubmit} className="mt-2 space-y-4">
+            <div className="flex items-center gap-2 rounded-2xl border border-border/70 bg-background/60 p-2">
+              <Input
+                type="email"
+                placeholder="you@email.com"
+                className="h-11 border-0 bg-transparent shadow-none focus-visible:ring-0"
+                value={modalEmail}
+                onChange={(e) => setModalEmail(e.target.value)}
+                required
+                autoFocus
+              />
+            </div>
+            <Button
+              className="rx-btn-gradient h-11 w-full rounded-xl"
+              type="submit"
+              disabled={modalMutation.isPending}
+            >
+              {modalMutation.isPending ? "Joining..." : "Join waitlist"}
+              <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
