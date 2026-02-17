@@ -52,7 +52,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       try {
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
-          from: "Rx360 <noreply@send.rx360.com>",
+          from: "Rx360 <noreply@rx360.com>",
           to: email,
           subject: "You're on the Rx360 list!",
           html: `<div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 40px 24px; color: #1a1a2e;">
