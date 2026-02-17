@@ -116,13 +116,6 @@ export default function LandingPage() {
               >
                 Mission
               </a>
-              <a
-                href="#careers"
-                className="rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:text-foreground"
-                data-testid="link-careers"
-              >
-                Careers
-              </a>
             </nav>
 
             <div className="flex items-center gap-2">
@@ -392,94 +385,12 @@ export default function LandingPage() {
           </Container>
         </section>
 
-
-        {/* Careers */}
-        <section id="careers" className="py-14 sm:py-18">
-          <Container>
-            <div className="rx-card rx-noise rounded-[28px] p-8 sm:p-10">
-              <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:items-start">
-                <div>
-                  <div className="rx-display text-3xl tracking-tight" data-testid="text-careers-title">
-                    Careers
-                  </div>
-                  <p className="mt-3 text-muted-foreground" data-testid="text-careers-copy">
-                    Join a small team building high‑trust technology for aging with dignity. We care about craft,
-                    outcomes, and respectful design.
-                  </p>
-                </div>
-
-                <div className="grid gap-3">
-                  {[
-                    {
-                      role: "Industrial Design",
-                      type: "Full‑time · Remote/Hybrid",
-                    },
-                    {
-                      role: "Mobile Engineer",
-                      type: "Full‑time · Remote",
-                    },
-                    {
-                      role: "Clinical Partnerships",
-                      type: "Part‑time · US",
-                    },
-                  ].map((j, idx) => (
-                    <a
-                      key={j.role}
-                      href="#"
-                      className="group flex items-center justify-between rounded-2xl border border-border/60 bg-background/50 px-5 py-4 transition hover:bg-background/70"
-                      data-testid={`link-job-${idx}`}
-                    >
-                      <div>
-                        <div className="text-sm font-semibold" data-testid={`text-job-role-${idx}`}>
-                          {j.role}
-                        </div>
-                        <div className="mt-1 text-sm text-muted-foreground" data-testid={`text-job-type-${idx}`}>
-                          {j.type}
-                        </div>
-                      </div>
-                      <ArrowRight className="size-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-foreground" />
-                    </a>
-                  ))}
-                  <Button variant="secondary" className="mt-2 h-11 rounded-xl" data-testid="button-careers-contact">
-                    Get in touch
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </section>
-
         {/* Footer */}
         <footer className="pb-12">
           <Container>
             <Separator className="my-8" />
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="text-sm text-muted-foreground" data-testid="text-footer-left">
-                © {new Date().getFullYear()} rx360. Coming soon.
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-foreground"
-                  data-testid="link-privacy"
-                >
-                  Privacy
-                </a>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-foreground"
-                  data-testid="link-terms"
-                >
-                  Terms
-                </a>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-foreground"
-                  data-testid="link-contact"
-                >
-                  Contact
-                </a>
-              </div>
+            <div className="text-center text-sm text-muted-foreground" data-testid="text-footer-left">
+              © {new Date().getFullYear()} Rx360
             </div>
           </Container>
         </footer>
