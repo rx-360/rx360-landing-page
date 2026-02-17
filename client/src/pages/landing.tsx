@@ -119,7 +119,11 @@ export default function LandingPage() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <Button className="rx-btn-gradient rounded-full" data-testid="button-join-waitlist">
+              <Button
+                className="rx-btn-gradient rounded-full"
+                data-testid="button-join-waitlist"
+                onClick={() => document.getElementById("waitlist-form")?.scrollIntoView({ behavior: "smooth", block: "center" })}
+              >
                 Join waitlist
                 <ArrowRight className="ml-2 size-4" aria-hidden="true" />
               </Button>
@@ -158,7 +162,7 @@ export default function LandingPage() {
                     emergencies, and share updates with your doctor and support circle—when you choose.
                   </p>
 
-                  <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <form id="waitlist-form" onSubmit={handleSubmit} className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                     <div className="flex w-full max-w-md items-center gap-2 rounded-2xl border border-border/70 bg-background/60 p-2 shadow-sm">
                       <Input
                         type="email"
