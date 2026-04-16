@@ -16,3 +16,4 @@ export const insertWaitlistEmailSchema = createInsertSchema(waitlistEmails).omit
 
 export type InsertWaitlistEmail = z.infer<typeof insertWaitlistEmailSchema>;
 export type WaitlistEmail = typeof waitlistEmails.$inferSelect;
+
