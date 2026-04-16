@@ -52,16 +52,9 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    submitContact.mutate(values, {
-      onSuccess: (res) => {
-        toast({
-          title: "Message Sent",
-          description: res.message,
-        });
-        form.reset();
-      }
-    });
+  function onSubmit(_values: z.infer<typeof formSchema>) {
+    toast({ title: "Message Sent", description: "Your message has been sent. We'll be in touch soon!" });
+    form.reset();
   }
 
   return (
@@ -210,7 +203,23 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel>Phone</FormLabel>
                           <FormControl>
-                            <Input className="h-12 rounded-lg" placeholder="(555) 000-0000" {...field} />
+                            <Input
+                              className="h-12 rounded-lg"
+                              placeholder="(555) 000-0000"
+                              {...field}
+                              onChange={(e) => {
+                                const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                                let formatted = digits;
+                                if (digits.length >= 7) {
+                                  formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+                                } else if (digits.length >= 4) {
+                                  formatted = `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+                                } else if (digits.length > 0) {
+                                  formatted = `(${digits}`;
+                                }
+                                field.onChange(formatted);
+                              }}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

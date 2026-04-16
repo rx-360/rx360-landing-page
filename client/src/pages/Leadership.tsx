@@ -108,6 +108,9 @@ export default function Leadership() {
               { src: "logo-uihealth.png", alt: "UI Health", className: "h-8 md:h-10" },
               { src: "logo-walgreens.png", alt: "Walgreens", className: "h-8 md:h-10" },
               { src: "logo-nyt.png", alt: "The New York Times", className: "h-5 md:h-7" },
+              { src: "logo-meta.png", alt: "Meta", className: "h-[3.6rem] md:h-[4.5rem]" },
+              { src: "logo-amazon.png", alt: "Amazon", className: "h-7 md:h-9 relative top-[10px]" },
+              { src: "logo-eero.png", alt: "Eero", className: "h-5 md:h-6" },
             ].map((logo) => (
               <img
                 key={logo.alt}

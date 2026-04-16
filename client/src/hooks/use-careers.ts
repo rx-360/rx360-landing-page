@@ -3,19 +3,23 @@ import { useMutation } from "@tanstack/react-query";
 export type CareerApplicationData = {
   name: string;
   email: string;
-  phone: string;
-  resumeLink: string;
-  coverLetter: string;
-  role: string;
+  phone?: string;
+  message: string;
 };
 
-// Simulated mock hook for the career application form
 export function useSubmitApplication() {
   return useMutation({
     mutationFn: async (data: CareerApplicationData) => {
-      // Simulate network latency
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      return { success: true, message: "Application submitted successfully! We will be in touch." };
+      const res = await fetch(`${import.meta.env.BASE_URL}api/careers`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.message || "Failed to send application.");
+      }
+      return json as { success: boolean; message: string };
     },
   });
 }

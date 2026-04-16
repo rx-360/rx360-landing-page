@@ -9,13 +9,19 @@ export type ContactFormData = {
   message: string;
 };
 
-// Simulated mock hook for the contact form
 export function useSubmitContact() {
   return useMutation({
     mutationFn: async (data: ContactFormData) => {
-      // Simulate network latency
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      return { success: true, message: "Thank you! Your inquiry has been received." };
+      const res = await fetch(`${import.meta.env.BASE_URL}api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.message || "Failed to send message.");
+      }
+      return json as { success: boolean; message: string };
     },
   });
 }
