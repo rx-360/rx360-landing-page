@@ -26,7 +26,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     await resend.emails.send({
       from: "Rx360 Careers <noreply@rx360.com>",
-      to: "meenakshi@wondermentapps.com",
+      to: "careers@rx360.com",
       replyTo: email,
       subject: `New Career Inquiry from ${name}`,
       html: `
