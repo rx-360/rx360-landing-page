@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/form";
 import { useSubmitApplication } from "@/hooks/use-careers";
 import { useToast } from "@/hooks/use-toast";
-import { MapPin, Heart, Lightbulb, Shield, Users, HelpCircle, Briefcase } from "lucide-react";
+import { MapPin, Heart, Lightbulb, Shield, Users, HelpCircle, Briefcase, ChevronDown, ChevronUp, Mail, Globe, Clock } from "lucide-react";
 import { AbstractHeroBg } from "@/components/ui/abstract-hero-bg";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -34,12 +35,124 @@ const principles = [
   { icon: HelpCircle, title: "Curiosity", desc: "We encourage questions, experimentation, and new ways of thinking." }
 ];
 
-const opportunities = [
-  "Product Design",
-  "Software Engineering",
-  "Data & Health Insights",
-  "Partnerships",
-  "Operations"
+interface JobListing {
+  id: string;
+  title: string;
+  type: string;
+  level: string;
+  summary: string;
+  responsibilities: string[];
+  required: string[];
+  niceToHave: string[];
+  applyNote: string;
+}
+
+const jobListings: JobListing[] = [
+  {
+    id: "frontend-staff",
+    title: "Staff Frontend / Architectural Software Engineer",
+    type: "Remote · Full-Time",
+    level: "Staff Level",
+    summary: "Own the frontend platform — the companion application, real-time data visualization layer, and the architectural patterns that let the product scale. You will set the architecture, define the stack, and orchestrate AI coding agents to accelerate implementation while maintaining a rigorous quality gate on everything that ships.",
+    responsibilities: [
+      "Own the frontend architecture: component model, state management, rendering strategy, performance budget, and build pipeline",
+      "Orchestrate AI coding agents to accelerate frontend development — generating components, tests, and integration code — while enforcing strict quality gates",
+      "Build and own the core user-facing application — real-time device data, maps, health metrics, alerts, and device management UI",
+      "Define API contracts jointly with the backend team; shape the data model that flows to the client",
+      "Make technology choices: framework selection, SPA vs. SSR, offline support, and progressive web app vs. native",
+      "Establish frontend engineering standards for an AI-first team: human review checkpoints, test coverage, accessibility, and cross-platform consistency",
+      "Contribute to system-level architecture discussions",
+      "Mentor engineers through architectural review, code review, and pairing",
+    ],
+    required: [
+      "5+ years of frontend engineering experience, including at least 2 years in a senior or staff-level role",
+      "Deep expertise in modern JavaScript/TypeScript and at least one major framework (React preferred)",
+      "Demonstrated ability to make and own architectural decisions — component systems, state at scale, real performance problems",
+      "Experience designing and consuming REST or GraphQL APIs",
+      "Conductor mindset: you set the architecture and direct AI agents to build it",
+      "Active and fluent use of AI development tools (Cursor, GitHub Copilot, Claude Code, or equivalent)",
+      "Strong opinions about code quality with sharp instincts for where AI-generated code fails silently",
+      "Clear, direct communicator who can work across hardware, firmware, backend, and design",
+    ],
+    niceToHave: [
+      "Experience with real-time data (WebSockets, SSE, or MQTT) or geospatial visualization (Mapbox, Leaflet, Deck.gl)",
+      "Familiarity with mobile-first or native hybrid development (React Native, Expo)",
+      "Background in health tech, IoT dashboards, or safety-critical interfaces",
+      "Experience with design systems and accessibility (WCAG 2.1)",
+      "Exposure to backend or full-stack systems",
+    ],
+    applyNote: "Email careers@rx360.com with your resume and examples of architectural decisions or systems you have designed.",
+  },
+  {
+    id: "backend-staff",
+    title: "Staff Backend Software Engineer",
+    type: "Remote · Full-Time",
+    level: "Staff Level",
+    summary: "Own the backend platform that connects our devices to the cloud — from the ingestion layer that handles satellite and cellular telemetry, to the APIs that power our mobile and web applications. You will work directly with hardware and firmware teams to define device-cloud protocols and set the architecture for how we scale.",
+    responsibilities: [
+      "Architect the backend platform for device telemetry ingestion — handling satellite (Iridium SBD, Skylo NTN), LTE-M, and NB-IoT data streams",
+      "Direct AI coding agents to implement services, pipelines, and integrations — reviewing output critically and iterating to production quality",
+      "Define and own device-cloud communication protocols and API contracts, working jointly with the firmware team",
+      "Design scalable, reliable data pipelines for time-series sensor data from a growing fleet of wearables",
+      "Build and maintain REST and/or gRPC APIs consumed by mobile clients and internal tooling",
+      "Implement device management, OTA firmware update delivery, and fleet provisioning systems",
+      "Drive security-first design: end-to-end encryption, secure key management, and authentication at scale",
+      "Set standards for backend engineering: AI-assisted development workflows, code review practices, testing strategy, and CI/CD pipelines",
+    ],
+    required: [
+      "5+ years of backend engineering experience with production distributed systems",
+      "Strong systems background — you understand how data moves through networks, failure modes, and edge behavior",
+      "Experience building and operating cloud-native services (AWS, GCP, or Azure) at production scale",
+      "Proficiency in at least one systems-oriented language (Go, Rust, or C++) and one high-productivity language (Python or TypeScript)",
+      "Experience with message queues (Kafka, SQS, MQTT), time-series databases, and streaming data pipelines",
+      "Conductor mindset: you define the architecture and orchestrate AI agents to execute it",
+      "Active and fluent use of AI development tools (Cursor, GitHub Copilot, Claude Code, or equivalent)",
+      "Clear, direct communication — written and verbal",
+    ],
+    niceToHave: [
+      "Experience with IoT device backends, MQTT brokers, or constrained-device protocols (CoAP, LwM2M)",
+      "Familiarity with satellite communication systems or mobile network protocols (LTE-M, NB-IoT)",
+      "Background in embedded systems or firmware",
+      "Experience with real-time telemetry, geospatial data, or health sensor data pipelines",
+    ],
+    applyNote: "Email careers@rx360.com with your resume and a brief note on a system you are proud of having built.",
+  },
+  {
+    id: "firmware-staff",
+    title: "Staff Firmware Engineer",
+    type: "Remote · Full-Time",
+    level: "Staff Level",
+    summary: "Own the embedded software stack for the Mark I platform built on Nordic nRF chipsets (nRF9151, nRF5340, nRF52840, nRF54L15) running on the nRF Connect SDK with Zephyr RTOS. You will be responsible for everything from hardware bring-up and peripheral driver development to protocol implementation, power management, and over-the-air update systems.",
+    responsibilities: [
+      "Own the firmware architecture for the Mark I platform — task model, memory layout, peripheral abstraction, and HAL",
+      "Direct AI coding agents to accelerate driver development, protocol scaffolding, and test generation",
+      "Develop and maintain firmware for Nordic nRF chipsets: nRF9151, nRF5340, nRF52840, and nRF54L15",
+      "Implement and integrate communication stacks: BLE 5.x, LTE-M, NB-IoT, Skylo NTN, and Iridium SBD",
+      "Drive power optimization: PSM, eDRX, deep sleep profiles, and wake-up strategies targeting sub-5 µA standby",
+      "Develop peripheral drivers for sensors, IMUs, displays, and flash storage over UART, SPI, I2C, and I2S",
+      "Own the FOTA system: MCUboot, secure boot, delta updates, rollback, and fleet management integration",
+      "Implement hardware security features: TrustZone, CryptoCell-312, secure key storage, and encrypted storage",
+      "Work hands-on with hardware engineers during PCB bring-up: signal integrity, pin validation, and power rail sequencing",
+    ],
+    required: [
+      "Strong hands-on experience in embedded C/C++ firmware development for production IoT or wearable devices",
+      "Direct experience with Nordic nRF chipsets (nRF9151, nRF52840, nRF5340, or nRF54L15) — shipped firmware on at least one",
+      "Working knowledge of the nRF Connect SDK and Zephyr RTOS, or equivalent RTOS (FreeRTOS, ThreadX)",
+      "Experience implementing and debugging wireless communication stacks: BLE, LTE-M, NB-IoT, or satellite protocols",
+      "Deep understanding of power management in constrained systems: PSM, eDRX, active/sleep current budgeting",
+      "Experience with hardware bring-up: reading schematics, oscilloscopes, logic analyzers, debugging signal integrity",
+      "Comfort directing AI coding tools for embedded development — with domain depth to catch timing errors and race conditions",
+      "Hands-on problem solver — you debug with a scope as readily as with a debugger",
+    ],
+    niceToHave: [
+      "Experience with satellite communication protocols, specifically Iridium SBD or 3GPP NTN (Skylo)",
+      "Familiarity with Bluetooth mesh, Thread, Zigbee, or Matter on Nordic platforms",
+      "Experience with FOTA in production: MCUboot, SMP protocol, or proprietary update systems",
+      "Background in health/medical wearables, safety devices, or other regulated embedded products",
+      "Contributions to Zephyr RTOS or the nRF Connect SDK upstream",
+    ],
+    applyNote: "Email careers@rx360.com with your resume and a description of the most technically challenging firmware problem you have solved.",
+  },
 ];
 
 const fadeUp = {
@@ -50,6 +163,102 @@ const fadeUp = {
     transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" as const }
   })
 };
+
+function JobCard({ job, index }: { job: JobListing; index: number }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <motion.div
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+    >
+      <Card className="overflow-hidden rounded-2xl border-border shadow-sm hover:shadow-lg transition-all duration-300">
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="w-full text-left p-6 md:p-8 flex items-start justify-between gap-4"
+        >
+          <div className="flex-1">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">{job.title}</h3>
+            <div className="flex flex-wrap gap-3 mb-3">
+              <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                <Globe className="w-4 h-4" /> {job.type}
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                <Clock className="w-4 h-4" /> {job.level}
+              </span>
+            </div>
+            <p className="text-muted-foreground leading-relaxed">{job.summary}</p>
+          </div>
+          <div className="mt-1 shrink-0">
+            {expanded ? (
+              <ChevronUp className="w-6 h-6 text-primary" />
+            ) : (
+              <ChevronDown className="w-6 h-6 text-primary" />
+            )}
+          </div>
+        </button>
+
+        {expanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            transition={{ duration: 0.3 }}
+            className="px-6 md:px-8 pb-8"
+          >
+            <div className="border-t border-border pt-6 space-y-8">
+              <div>
+                <h4 className="text-lg font-bold text-foreground mb-4">What You'll Do</h4>
+                <ul className="space-y-2">
+                  {job.responsibilities.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-bold text-foreground mb-4">Required</h4>
+                <ul className="space-y-2">
+                  {job.required.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-bold text-foreground mb-4">Nice to Have</h4>
+                <ul className="space-y-2">
+                  {job.niceToHave.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-muted-foreground">
+                      <span className="w-1.5 h-1.5 rounded-full bg-secondary/60 mt-2 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-primary/5 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <Mail className="w-6 h-6 text-primary shrink-0" />
+                <div>
+                  <p className="font-semibold text-foreground mb-1">How to Apply</p>
+                  <p className="text-muted-foreground">{job.applyNote}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </Card>
+    </motion.div>
+  );
+}
 
 export default function Careers() {
   const { toast } = useToast();
@@ -65,9 +274,28 @@ export default function Careers() {
     },
   });
 
-  function onSubmit(_values: z.infer<typeof formSchema>) {
-    toast({ title: "Message Sent", description: "Your message has been sent. We'll be in touch soon!" });
-    form.reset();
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    submitApp.mutate(
+      {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        message: values.message,
+      },
+      {
+        onSuccess: (res) => {
+          toast({ title: "Message Sent", description: res.message });
+          form.reset();
+        },
+        onError: (err: Error) => {
+          toast({
+            title: "Something went wrong",
+            description: err.message || "Please try again later.",
+            variant: "destructive",
+          });
+        },
+      }
+    );
   }
 
   return (
@@ -169,21 +397,21 @@ export default function Careers() {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
-        <div className="container max-w-3xl mx-auto px-4 text-center">
-          <Briefcase className="w-16 h-16 text-primary mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Open Opportunities</h2>
-          <p className="text-lg text-muted-foreground mb-4">
-            We're always interested in meeting thoughtful people who are passionate about improving health and independence.
-          </p>
-          <p className="text-lg text-muted-foreground mb-10">
-            If you don't see a role listed that fits your background, we still encourage you to reach out.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {opportunities.map((role) => (
-              <span key={role} className="px-5 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm border border-primary/20">
-                {role}
-              </span>
+      <section className="py-24 bg-white" id="open-roles">
+        <div className="container max-w-5xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <Briefcase className="w-16 h-16 text-primary mx-auto mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Open Roles</h2>
+            <p className="text-lg text-muted-foreground mb-4">
+              We're looking for engineers who thrive on hard problems, own their work end-to-end, and want to build something that genuinely matters.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Don't see a fit? Email <a href="mailto:careers@rx360.com" className="text-primary font-medium hover:underline">careers@rx360.com</a> — we're always interested in meeting exceptional people.
+            </p>
+          </div>
+          <div className="space-y-6">
+            {jobListings.map((job, i) => (
+              <JobCard key={job.id} job={job} index={i} />
             ))}
           </div>
         </div>
