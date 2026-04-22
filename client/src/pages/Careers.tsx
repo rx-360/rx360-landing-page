@@ -18,7 +18,7 @@ import { useSubmitApplication } from "@/hooks/use-careers";
 import { useToast } from "@/hooks/use-toast";
 import { MapPin, Heart, Lightbulb, Shield, Users, HelpCircle, Briefcase, ChevronDown, ChevronUp, Mail, Globe, Clock } from "lucide-react";
 import { AbstractHeroBg } from "@/components/ui/abstract-hero-bg";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -245,13 +245,30 @@ function JobCard({ job, index }: { job: JobListing; index: number }) {
                 </ul>
               </div>
 
-              <div className="bg-primary/5 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <Mail className="w-6 h-6 text-primary shrink-0" />
-                <div>
-                  <p className="font-semibold text-foreground mb-1">How to Apply</p>
-                  <p className="text-muted-foreground">{job.applyNote}</p>
-                </div>
-              </div>
+              {(() => {
+                const mailtoHref = `mailto:careers@rx360.com?subject=${encodeURIComponent(`Application for ${job.title}`)}`;
+                const parts = job.applyNote.split("careers@rx360.com");
+                return (
+                  <div className="bg-primary/5 rounded-xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                    <Mail className="w-6 h-6 text-primary shrink-0" />
+                    <div>
+                      <p className="font-semibold text-foreground mb-1">How to Apply</p>
+                      <p className="text-muted-foreground">
+                        {parts.map((chunk, i) => (
+                          <Fragment key={i}>
+                            {chunk}
+                            {i < parts.length - 1 && (
+                              <a href={mailtoHref} className="text-primary font-medium hover:underline">
+                                careers@rx360.com
+                              </a>
+                            )}
+                          </Fragment>
+                        ))}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           </motion.div>
         )}
