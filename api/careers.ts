@@ -30,30 +30,80 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       replyTo: email,
       subject: `New Career Inquiry from ${name}`,
       html: `
-        <div style="font-family: 'Helvetica Neue', Arial, sans-serif; max-width: 560px; margin: 0 auto; padding: 40px 24px; color: #1a1a2e;">
-          <h1 style="font-size: 22px; font-weight: 700; margin-bottom: 24px;">New Career Inquiry</h1>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 10px 0; font-weight: 600; width: 100px; vertical-align: top; color: #555;">Name</td>
-              <td style="padding: 10px 0;">${name}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px 0; font-weight: 600; vertical-align: top; color: #555;">Email</td>
-              <td style="padding: 10px 0;"><a href="mailto:${email}" style="color: #4f46e5;">${email}</a></td>
-            </tr>
-            ${phone ? `
-            <tr>
-              <td style="padding: 10px 0; font-weight: 600; vertical-align: top; color: #555;">Phone</td>
-              <td style="padding: 10px 0;">${phone}</td>
-            </tr>` : ""}
-            <tr>
-              <td style="padding: 10px 0; font-weight: 600; vertical-align: top; color: #555;">Message</td>
-              <td style="padding: 10px 0; white-space: pre-wrap;">${message}</td>
-            </tr>
-          </table>
-          <hr style="border: none; border-top: 1px solid #e5e5e5; margin: 32px 0;" />
-          <p style="font-size: 13px; color: #999;">Submitted via the Rx360 Careers page &bull; &copy; ${new Date().getFullYear()} Rx360</p>
-        </div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:0;background-color:#faf8f6;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <tr>
+    <td align="center" style="padding:32px 16px;">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background-color:#ffffff;border-radius:12px;overflow:hidden;">
+        <tr>
+          <td style="background-color:#6B2D5B;padding:24px 32px;">
+            <p style="margin:0;color:#ffffff;font-size:18px;font-weight:700;letter-spacing:-0.01em;">Rx360 Careers</p>
+            <p style="margin:4px 0 0;color:rgba(255,255,255,0.75);font-size:13px;">Stay Connected. Stay Healthy.</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px 32px 8px;">
+            <p style="margin:0;font-size:11px;font-weight:600;color:#8a7a82;text-transform:uppercase;letter-spacing:0.08em;">New Inquiry</p>
+            <h1 style="margin:8px 0 0;font-size:22px;font-weight:700;color:#1a1a2e;line-height:1.3;">${name} is interested in joining the team</h1>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:16px 32px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:14px 16px;background-color:#faf8f6;border-left:3px solid #6B2D5B;border-radius:6px;">
+                  <p style="margin:0;font-size:11px;font-weight:600;color:#8a7a82;text-transform:uppercase;letter-spacing:0.05em;">Name</p>
+                  <p style="margin:4px 0 0;font-size:15px;color:#1a1a2e;font-weight:500;">${name}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:8px 32px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:14px 16px;background-color:#faf8f6;border-left:3px solid #6B2D5B;border-radius:6px;">
+                  <p style="margin:0;font-size:11px;font-weight:600;color:#8a7a82;text-transform:uppercase;letter-spacing:0.05em;">Email</p>
+                  <p style="margin:4px 0 0;font-size:15px;"><a href="mailto:${email}" style="color:#6B2D5B;text-decoration:none;font-weight:500;">${email}</a></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        ${phone ? `<tr>
+          <td style="padding:8px 32px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:14px 16px;background-color:#faf8f6;border-left:3px solid #6B2D5B;border-radius:6px;">
+                  <p style="margin:0;font-size:11px;font-weight:600;color:#8a7a82;text-transform:uppercase;letter-spacing:0.05em;">Phone</p>
+                  <p style="margin:4px 0 0;font-size:15px;color:#1a1a2e;font-weight:500;">${phone}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>` : ""}
+        <tr>
+          <td style="padding:8px 32px 24px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:14px 16px;background-color:#faf8f6;border-left:3px solid #6B2D5B;border-radius:6px;">
+                  <p style="margin:0;font-size:11px;font-weight:600;color:#8a7a82;text-transform:uppercase;letter-spacing:0.05em;">Message</p>
+                  <p style="margin:8px 0 0;font-size:15px;color:#1a1a2e;line-height:1.55;white-space:pre-wrap;">${message}</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="background-color:#faf8f6;border-top:1px solid #efe9ec;padding:20px 32px;text-align:center;">
+            <p style="margin:0;font-size:12px;color:#8a7a82;">Submitted via the Rx360 Careers page</p>
+            <p style="margin:4px 0 0;font-size:12px;color:#8a7a82;">&copy; ${new Date().getFullYear()} Rx360 &bull; <a href="https://rx360.com" style="color:#8a7a82;text-decoration:none;">rx360.com</a></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
       `,
     });
 
