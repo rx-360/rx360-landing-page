@@ -9,20 +9,23 @@ import About from "@/pages/About";
 import Leadership from "@/pages/Leadership";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
+import OverviewPage from "@/pages/overview";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
 
-function Router() {
+function LayoutRoutes() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/leadership" component={Leadership} />
-      <Route path="/careers" component={Careers} />
-      <Route path="/contact" component={Contact} />
-      <Route component={NotFound} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/leadership" component={Leadership} />
+        <Route path="/careers" component={Careers} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   );
 }
 
@@ -31,9 +34,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Layout>
-            <Router />
-          </Layout>
+          <Switch>
+            <Route path="/overview" component={OverviewPage} />
+            <Route component={LayoutRoutes} />
+          </Switch>
         </WouterRouter>
         <Toaster />
       </TooltipProvider>
