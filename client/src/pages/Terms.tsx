@@ -28,7 +28,7 @@ function TableOfContents() {
               href={`#${item.id}`}
               className="text-base text-muted-foreground hover:text-primary transition-colors inline-flex gap-2"
             >
-              <span className="font-semibold text-primary min-w-[1.75rem]">{item.number}.</span>
+              <span className="font-semibold text-foreground min-w-[1.75rem]">{item.number}.</span>
               <span>{item.title}</span>
             </a>
           </li>
@@ -42,7 +42,7 @@ function Section({ id, number, title, children }: { id: string; number: string; 
   return (
     <section id={id} className="scroll-mt-24 space-y-6">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-        <span className="text-primary mr-2">{number}.</span>
+        <span className="mr-2">{number}.</span>
         {title}
       </h2>
       <div className="space-y-6">{children}</div>
@@ -54,7 +54,7 @@ function SubSection({ number, title, children }: { number: string; title?: strin
   return (
     <div className="space-y-3">
       <h3 className="text-lg md:text-xl font-semibold text-foreground">
-        <span className="text-primary/80 mr-2">{number}</span>
+        <span className="mr-2">{number}</span>
         {title}
       </h3>
       <div className="space-y-3 pl-0 md:pl-2">{children}</div>
@@ -85,9 +85,9 @@ function Callout({ children, variant = "warning" }: { children: ReactNode; varia
       : "border-border bg-muted/40";
   return (
     <div className={`my-2 p-5 md:p-6 rounded-2xl border ${styles}`}>
-      <p className="text-sm md:text-base font-semibold text-foreground leading-relaxed uppercase tracking-wide">
+      <div className="text-sm md:text-base font-semibold text-foreground leading-relaxed uppercase tracking-wide space-y-3">
         {children}
-      </p>
+      </div>
     </div>
   );
 }
@@ -176,11 +176,16 @@ export default function Terms() {
           </Callout>
 
           <Callout>
-            Unless you opt out of the agreement to arbitrate within 30 days: (1) you will only be permitted to pursue disputes
-            or claims and seek relief against us on an individual basis, not as a plaintiff or class member in any class or
-            representative action or proceeding and you waive your right to participate in a class action lawsuit or class-wide
-            arbitration; and (2) you are waiving your right to pursue disputes or claims and seek relief in a court of law and
-            to have a jury trial.
+            <p>Unless you opt out of the agreement to arbitrate within 30 days:</p>
+            <p>
+              (1) you will only be permitted to pursue disputes or claims and seek relief against us on an individual basis,
+              not as a plaintiff or class member in any class or representative action or proceeding and you waive your right
+              to participate in a class action lawsuit or class-wide arbitration; and
+            </p>
+            <p>
+              (2) you are waiving your right to pursue disputes or claims and seek relief in a court of law and to have a
+              jury trial.
+            </p>
           </Callout>
 
           <TableOfContents />

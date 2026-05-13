@@ -23,7 +23,7 @@ function Section({ id, number, title, children }: { id: string; number: string; 
   return (
     <section id={id} className="scroll-mt-24 space-y-6">
       <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-        <span className="text-primary mr-2">{number}.</span>
+        <span className="mr-2">{number}.</span>
         {title}
       </h2>
       <div className="space-y-6">{children}</div>
@@ -35,7 +35,7 @@ function SubSection({ marker, title, children }: { marker?: string; title: strin
   return (
     <div className="space-y-3">
       <h3 className="text-lg md:text-xl font-semibold text-foreground">
-        {marker && <span className="text-primary/80 mr-2">{marker}</span>}
+        {marker && <span className="mr-2">{marker}</span>}
         {title}
       </h3>
       <div className="space-y-3 pl-0 md:pl-2">{children}</div>
@@ -48,7 +48,7 @@ function P({ children }: { children: ReactNode }) {
 }
 
 function BulletList({ children }: { children: ReactNode }) {
-  return <ul className="list-disc list-outside pl-6 space-y-3 marker:text-primary">{children}</ul>;
+  return <ul className="list-disc list-outside pl-6 space-y-3 marker:text-foreground">{children}</ul>;
 }
 
 function Bullet({ title, children }: { title?: string; children: ReactNode }) {
@@ -62,7 +62,7 @@ function Bullet({ title, children }: { title?: string; children: ReactNode }) {
 
 function SubBulletList({ children }: { children: ReactNode }) {
   return (
-    <ul className="list-[circle] list-outside pl-6 space-y-2 mt-2 marker:text-primary/60">{children}</ul>
+    <ul className="list-[circle] list-outside pl-6 space-y-2 mt-2 marker:text-foreground">{children}</ul>
   );
 }
 
@@ -81,7 +81,7 @@ function TableOfContents() {
               href={`#${item.id}`}
               className="text-base text-muted-foreground hover:text-primary transition-colors inline-flex gap-2"
             >
-              <span className="font-semibold text-primary min-w-[1.75rem]">{item.number}.</span>
+              <span className="font-semibold text-foreground min-w-[1.75rem]">{item.number}.</span>
               <span>{item.title}</span>
             </a>
           </li>
@@ -120,7 +120,7 @@ function CcpaRow({
       </div>
       <div>
         <p className="md:hidden text-xs uppercase tracking-wide font-bold text-foreground mb-2">Disclosed to:</p>
-        <ul className="list-disc list-outside pl-5 space-y-1 marker:text-primary text-sm md:text-base text-muted-foreground">
+        <ul className="list-disc list-outside pl-5 space-y-1 marker:text-foreground text-sm md:text-base text-muted-foreground">
           {recipients.map((r, i) => (
             <li key={i}>{r}</li>
           ))}
