@@ -57,14 +57,14 @@ function SubSection({ number, title, children }: { number: string; title?: strin
         <span className="mr-2">{number}</span>
         {title}
       </h3>
-      <div className="space-y-3 pl-0 md:pl-2">{children}</div>
+      <div className="space-y-3">{children}</div>
     </div>
   );
 }
 
 function NestedItem({ marker, title, children }: { marker: string; title?: string; children: ReactNode }) {
   return (
-    <div className="space-y-2 pl-4 md:pl-6 border-l-2 border-border/60">
+    <div className="space-y-2">
       <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
         <span className="font-semibold text-foreground mr-1">{marker}</span>
         {title && <span className="font-semibold text-foreground">{title} </span>}
@@ -208,7 +208,7 @@ export default function Terms() {
                 Accounts are available at no cost to users and include access to the then-current features of the Pilot for
                 each Account type:
               </NestedItem>
-              <div className="pl-8 md:pl-12 space-y-3">
+              <div className="pl-8 space-y-3">
                 <NestedItem marker="(i)" title="Medication Taker Account.">
                   If you are a medication taker, your account will have the ability to sign-in and load your Customer Data
                   (defined below) (including via self-scanning) and access medication schedules and lists and medication
