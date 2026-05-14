@@ -78,17 +78,9 @@ function P({ children }: { children: ReactNode }) {
   return <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{children}</p>;
 }
 
-function Callout({ children, variant = "warning" }: { children: ReactNode; variant?: "warning" | "info" }) {
-  const styles =
-    variant === "warning"
-      ? "border-primary/40 bg-primary/5"
-      : "border-border bg-muted/40";
+function Callout({ children }: { children: ReactNode }) {
   return (
-    <div className={`my-2 p-5 md:p-6 rounded-2xl border ${styles}`}>
-      <div className="text-sm md:text-base font-semibold text-foreground leading-relaxed uppercase tracking-wide space-y-3">
-        {children}
-      </div>
-    </div>
+    <div className="space-y-3 text-base md:text-lg text-muted-foreground leading-relaxed">{children}</div>
   );
 }
 
