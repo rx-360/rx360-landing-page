@@ -9,8 +9,6 @@ import About from "@/pages/About";
 import Leadership from "@/pages/Leadership";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
-import Privacy from "@/pages/Privacy";
-import Terms from "@/pages/Terms";
 import OverviewPage from "@/pages/overview";
 import NotFound from "@/pages/not-found";
 
@@ -25,8 +23,6 @@ function LayoutRoutes() {
         <Route path="/leadership" component={Leadership} />
         <Route path="/careers" component={Careers} />
         <Route path="/contact" component={Contact} />
-        <Route path="/privacy" component={Privacy} />
-        <Route path="/terms" component={Terms} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
