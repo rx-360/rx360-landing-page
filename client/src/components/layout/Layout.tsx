@@ -131,7 +131,7 @@ export function Layout({ children }: { children: ReactNode }) {
       {/* Footer */}
       <footer className="bg-white border-t border-border py-16 relative z-10">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-8">
             <div className="md:col-span-2">
               <Logo className="mb-4" />
               <p className="text-xl font-display font-medium text-foreground mb-4">
@@ -151,13 +151,6 @@ export function Layout({ children }: { children: ReactNode }) {
               <h3 className="font-bold text-lg mb-6">Support</h3>
               <ul className="space-y-4">
                 <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact Us</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-6">Legal</h3>
-              <ul className="space-y-4">
-                <li><Link href="/privacy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="text-muted-foreground hover:text-primary transition-colors">Terms &amp; Conditions</Link></li>
               </ul>
             </div>
           </div>
