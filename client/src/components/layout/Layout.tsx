@@ -151,6 +151,7 @@ export function Layout({ children }: { children: ReactNode }) {
               <h3 className="font-bold text-lg mb-6">Support</h3>
               <ul className="space-y-4">
                 <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors">Contact Us</Link></li>
+                <li><Link href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link></li>
               </ul>
             </div>
           </div>
