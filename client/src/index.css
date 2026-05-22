@@ -231,3 +231,58 @@
     inset: -1px;
   }
 }
+
+.privacy-policy-content h1 {
+  display: none;
+}
+
+.privacy-policy-content ul {
+  list-style-type: square;
+}
+
+.privacy-policy-content ul > li > ul {
+  list-style-type: circle;
+}
+
+.privacy-policy-content ul > li > ul > li > ul {
+  list-style-type: square;
+}
+
+.privacy-policy-content ol li {
+  font-family: inherit;
+}
+
+.privacy-policy-content.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.privacy-policy-content table + table {
+  border-top: none;
+}
+
+.privacy-policy-content th,
+.privacy-policy-content td {
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
+
+.privacy-policy-content td > div {
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+
+.privacy-policy-content td br {
+  display: none;
+}
+
+.privacy-policy-content a[data-custom-class="link"] {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+.privacy-policy-content a[data-custom-class="link"]:hover {
+  opacity: 0.85;
+}
